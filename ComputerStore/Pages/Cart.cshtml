@@ -1,0 +1,34 @@
+﻿@page
+@model ComputerStore.CartModel
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<h2>Cart</h2>
+<table class="table table-responsive table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Cart)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Count</td>
+                <td>
+                <a class="btn btn-sm btn-success" asp-page-handler="Add" asp-route-id="@item.Id">+</a>
+                <a class="btn btn-sm btn-danger" asp-page-handler="Remove" asp-route-id="@item.Id">-</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3"><a class="btn btn-primary" asp-page="Checkout">Checkout</a>
+        </tr>
+    </tfoot>
+</table>
